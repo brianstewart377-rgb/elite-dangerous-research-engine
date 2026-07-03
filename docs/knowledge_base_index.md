@@ -4,7 +4,7 @@ This is the canonical entry point for the current structured knowledge base.
 
 ## Current counts
 
-- Mechanics: `8`
+- Mechanics: `13`
 - Glossary entries: `15`
 - Planner rules: `10`
 - Economy rules: `10`
@@ -64,6 +64,13 @@ Canonical mechanic documents:
 - `mechanics/M-0006-strong-and-weak-link-routing.md`
 - `mechanics/M-0007-colony-port-economy-inheritance.md`
 - `mechanics/M-0008-local-body-base-economies-and-modifiers.md`
+- `mechanics/M-0009-facility-prerequisites-port-conversion-and-high-tier-port-cost-escalation.md`
+- `mechanics/M-0010-economy-compatibility-rank-protection-and-market-cannibalization.md`
+- `mechanics/M-0011-facility-stats-service-activation-and-system-effects.md`
+- `mechanics/M-0012-population-growth-body-multipliers-and-output-scaling.md`
+- `mechanics/M-0013-system-scores-payments-and-high-risk-caveats.md`
+
+The mechanics count covers the full canonical catalogue `M-0001` through `M-0013` in `mechanics/index.md`.
 
 ## Planner layer
 
