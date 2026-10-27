@@ -66,6 +66,15 @@ The repository begins with:
 - platform architecture
 - knowledge roadmap
 
+## The rulebook (what this repository publishes)
+
+Owner decision 2026-10-21 (`D-0006`): this repository's job is a **versioned
+rulebook** that ed-finder reads. `rulebook/rulebook.json` lists the rules with
+stable IDs (`RB-0001`...), exact values, a status and quoted sources; it is
+exported to `exports/rulebook.json`, checksummed in `exports/export_manifest.json`
+and tagged `cre-knowledge-vX.Y.Z`. Live experiments remain an optional extra.
+See `rulebook/README.md`.
+
 ## Knowledge base entry point
 
 Use `docs/knowledge_base_index.md` as the main index for the current structured knowledge base, counts, canonical registers, and navigation into mechanics, evidence, decisions, planner rules, ontology, contradictions, and live-verification work.

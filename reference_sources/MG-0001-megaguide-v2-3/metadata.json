@@ -5,6 +5,12 @@
   "type": "community_guide",
   "author_or_origin": "CMDR Mechan and community contributors",
   "source_tier": "Tier 2 - community reference",
-  "primary_file": "elite-dangerous-colonization-mega-guide-v2-3.txt",
-  "notes": "Text extraction from uploaded DOCX; original DOCX was ~89MB and not committed as binary."
+  "primary_file": "mega-guide-v2.3.0-pdftotext.txt",
+  "notes": "Primary text is pdftotext -layout (poppler 24.02.0) of the 121-page PDF, unmodified, with footnotes (since CRE Knowledge v0.3.0). The legacy DOCX extraction is kept for history and has no footnotes.",
+  "primary_file_sha256": "359e8fd00d3df3da0f10562f19012c7f71d06cf82933d09bfcf89d1fb296fbd3",
+  "page_numbering": "PDF pages; form-feed separated; footnotes included",
+  "legacy_file": "elite-dangerous-colonization-mega-guide-v2-3.txt",
+  "legacy_file_sha256": "aa80fb9a1314246c24fce85cdfe978f56222a487a01b0dde443b70d739b7dcd3",
+  "licence": "CC BY-SA 4.0",
+  "source_pdf_sha256": "aaabd23cf5ed6161a9b2dadb76a6a7d6b385e4d8c73e87de3bca0339087b69d5"
 }

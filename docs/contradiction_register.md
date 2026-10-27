@@ -118,3 +118,42 @@ This register records durable contradictions and unresolved conflicts discovered
 - Testing status: Needs live verification
 - Contradictions: Family-level dependency wording versus large-branch dependency interpretation
 - Unknowns: Which hub chains are strict large-branch dependencies in live construction
+
+## C-0010 - Weekly maintenance ticks versus measured daily growth ticks
+
+- Category: First-party wording versus community measurement
+- Description: Frontier's Trailblazers Update 3 post says populations "will grow on each weekly maintenance tick". The Mega Guide's measured population data (CMDR Betel01) says the first, fixed-value growth phase runs on daily ticks, usually spread over 15 days (13 full ticks plus partial ticks on C+1 and C+15/16).
+- Source: `reference_sources/FD-0001-trailblazers-update-3/README.md`, `reference_sources/MG-0001-megaguide-v2-3/mega-guide-v2.3.0-pdftotext.txt`
+- Exact location: FD-0001 population sentences; MG-0001 PDF page 76 (quoted patch wording) and page 77 footnote 27
+- Confidence: High that the wording conflict exists
+- Related mechanics: `M-0012`
+- Planner implications: Use the measured daily ticks for the first phase (`POP-0001`); do not plan first-month growth on a weekly cadence.
+- Testing status: Measured by the community; not live-verified in CRE
+- Contradictions: First-party wording versus measured growth data
+- Unknowns: Whether growth after the fixed-value phase is applied daily or weekly
+
+## C-0011 - "These overrides may stack" versus no stacking of body economies and modifiers
+
+- Category: First-party wording versus community guide
+- Description: Frontier's Trailblazers Update 3 post says of the body economies and local-body modifiers: "These overrides may stack." The Mega Guide says local-body modifiers do NOT stack with base planet economies nor with each other (an Icy body with geologicals has Industrial 1.0, not 2.0), with worked examples.
+- Source: `reference_sources/FD-0001-trailblazers-update-3/README.md`, `reference_sources/MG-0001-megaguide-v2-3/mega-guide-v2.3.0-pdftotext.txt`
+- Exact location: FD-0001 overrides list; MG-0001 PDF page 50 (and page 51, footnotes 14-15)
+- Confidence: High that the wording conflict exists
+- Related mechanics: `M-0008`
+- Planner implications: Treat a body economy that is both inherited and added by a modifier as 1.0, not as a stacked value (`RB-0012`). "May stack" plausibly means that several different economies can be added together, which the guide agrees with.
+- Testing status: Needs live verification
+- Contradictions: First-party "may stack" versus guide examples of overlap
+- Unknowns: Whether any modifier pair does stack in the live game
+
+## C-0012 - Water World as an Agriculture and High Tech strong-link boost
+
+- Category: Source omission
+- Description: The Mega Guide lists "Orbiting a Water World" as a strong-link boost for Agriculture, High Tech and Tourism. Frontier's Trailblazers Update 3 post lists Water World as a boost for Tourism only.
+- Source: `reference_sources/FD-0001-trailblazers-update-3/README.md`, `reference_sources/MG-0001-megaguide-v2-3/mega-guide-v2.3.0-pdftotext.txt`
+- Exact location: FD-0001 strong-link lists; MG-0001 PDF pages 55-56
+- Confidence: Medium (the first-party list may simply be incomplete)
+- Related mechanics: `M-0006`
+- Planner implications: The rulebook records the Agriculture and High Tech Water World boosts as `Extracted` (guide only), not `Confirmed`; prefer a live test before relying on them.
+- Testing status: Needs live verification
+- Contradictions: Guide list versus first-party list
+- Unknowns: Whether the boosts were added after the post or the post omitted them

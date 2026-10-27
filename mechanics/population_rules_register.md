@@ -2,18 +2,18 @@
 
 This register captures the population-growth and output rules extracted directly from the recovered colonisation sources.
 
-## PR-0001 - Population grows on weekly maintenance ticks
+## POP-0001 - Initial population growth ticks are daily, spread over about 15 days
 
 - Status: Extracted
-- Source: `evidence/claim_register.csv`
-- Rule: Population growth is applied on weekly maintenance ticks rather than continuously.
+- Source: `reference_sources/MG-0001-megaguide-v2-3/mega-guide-v2.3.0-pdftotext.txt` (PDF page 77, footnote 27); `reference_sources/FD-0001-trailblazers-update-3/README.md`
+- Rule: The fixed-value first phase of population growth runs on daily ticks, usually spread over 15 days: 13 full ticks plus partial ticks on days C+1 and C+15 (sometimes C+16). Frontier's Trailblazers Update 3 post says populations grow "on each weekly maintenance tick"; the guide's measured data says the early ticks are daily.
 - Related mechanics: `M-0012`
-- Planner implications: Use week-based population models and avoid day-to-day micromath beyond the first-tick projections.
-- Testing status: Extracted from Mega Guide v2.3.0
-- Contradictions: None currently recorded
-- Unknowns: None currently recorded
+- Planner implications: Model the first-phase growth per day, not per week. Before CRE Knowledge v0.3.0 this rule said "weekly"; that came from a DOCX extraction that lost the guide's footnote 27.
+- Testing status: Extracted from Mega Guide v2.3.0 measured data (CMDR Betel01); not live-verified in CRE
+- Contradictions: `C-0010`
+- Unknowns: Whether ticks after the first phase are daily or weekly
 
-## PR-0002 - Population follows a hybrid curve
+## POP-0002 - Population follows a hybrid curve
 
 - Status: Extracted
 - Source: `evidence/claim_register.csv`
@@ -24,7 +24,7 @@ This register captures the population-growth and output rules extracted directly
 - Contradictions: None currently recorded
 - Unknowns: `U-0015`
 
-## PR-0003 - Output scales with the square root of population
+## POP-0003 - Output scales with the square root of population
 
 - Status: Extracted
 - Source: `evidence/claim_register.csv`
@@ -35,7 +35,7 @@ This register captures the population-growth and output rules extracted directly
 - Contradictions: None currently recorded
 - Unknowns: None currently recorded
 
-## PR-0004 - Stations reach about twenty percent of max population after 14 full ticks
+## POP-0004 - Stations reach about twenty percent of max population after 14 full ticks
 
 - Status: Extracted
 - Source: `evidence/claim_register.csv`
@@ -46,7 +46,7 @@ This register captures the population-growth and output rules extracted directly
 - Contradictions: None currently recorded
 - Unknowns: None currently recorded
 
-## PR-0005 - Full population maturation takes about a year
+## POP-0005 - Full population maturation takes about a year
 
 - Status: Extracted
 - Source: `evidence/claim_register.csv`
@@ -57,7 +57,7 @@ This register captures the population-growth and output rules extracted directly
 - Contradictions: None currently recorded
 - Unknowns: `U-0015`
 
-## PR-0006 - Body and facility type both change asymptotic population
+## POP-0006 - Body and facility type both change asymptotic population
 
 - Status: Extracted
 - Source: `evidence/claim_register.csv`
@@ -68,7 +68,7 @@ This register captures the population-growth and output rules extracted directly
 - Contradictions: None currently recorded
 - Unknowns: `U-0015`
 
-## PR-0007 - Tier 3 ELW orbitals reach about 3.1 billion asymptotic population
+## POP-0007 - Tier 3 ELW orbitals reach about 3.1 billion asymptotic population
 
 - Status: Extracted
 - Source: `evidence/claim_register.csv`
@@ -79,7 +79,7 @@ This register captures the population-growth and output rules extracted directly
 - Contradictions: None currently recorded
 - Unknowns: Whether all ELW orbital subclasses match that same ceiling
 
-## PR-0008 - Tier 1 planetary ports can outclass Coriolis on population
+## POP-0008 - Tier 1 planetary ports can outclass Coriolis on population
 
 - Status: Extracted
 - Source: `evidence/claim_register.csv`
@@ -90,7 +90,7 @@ This register captures the population-growth and output rules extracted directly
 - Contradictions: None currently recorded
 - Unknowns: Body-specific coverage remains incomplete
 
-## PR-0009 - Population affects only its own facility output
+## POP-0009 - Population affects only its own facility output
 
 - Status: Extracted
 - Source: `evidence/claim_register.csv`
@@ -101,7 +101,7 @@ This register captures the population-growth and output rules extracted directly
 - Contradictions: None currently recorded
 - Unknowns: None currently recorded
 
-## PR-0010 - Population affects emissions grade and BGS resistance
+## POP-0010 - Population affects emissions grade and BGS resistance
 
 - Status: Extracted
 - Source: `evidence/claim_register.csv`
@@ -112,7 +112,7 @@ This register captures the population-growth and output rules extracted directly
 - Contradictions: None currently recorded
 - Unknowns: Exact magnitude of the emissions and BGS effects
 
-## PR-0011 - Demolition may fail to reduce population
+## POP-0011 - Demolition may fail to reduce population
 
 - Status: Needs verification
 - Source: `evidence/claim_register.csv`
@@ -122,3 +122,14 @@ This register captures the population-growth and output rules extracted directly
 - Testing status: Needs live verification
 - Contradictions: None currently recorded
 - Unknowns: `U-0016`
+
+## POP-0012 - The logistic phase inflects at 100 days for space ports and 120 for planetary ports
+
+- Status: Extracted
+- Source: `reference_sources/MG-0001-megaguide-v2-3/mega-guide-v2.3.0-pdftotext.txt` (PDF pages 78-79, footnotes 28 and 29)
+- Rule: The exact growth formula is published for space ports; the formula for ground ports appears similar, but its inflection point is 120 days instead of 100.
+- Related mechanics: `M-0012`
+- Planner implications: Planetary ports mature more slowly than space ports with the same asymptotic population.
+- Testing status: Extracted from Mega Guide v2.3.0
+- Contradictions: None currently recorded
+- Unknowns: `U-0015`
