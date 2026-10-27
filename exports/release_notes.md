@@ -6,7 +6,7 @@ The first release with a published rulebook (owner decision `D-0006`).
 
 ### New
 
-- `rulebook.json`: 26 rules with stable IDs (`RB-0001` to `RB-0026`), exact
+- `rulebook.json`: 27 rules with stable IDs (`RB-0001` to `RB-0027`), exact
   values, statuses and quoted sources: construction points and T2/T3 port
   escalation, port families, body economies and modifiers (with the no-stacking
   rule), strong and weak link values and modifiers, top-two market protection,
@@ -39,7 +39,14 @@ The first release with a published rulebook (owner decision `D-0006`).
 - `C-0010`: Frontier says weekly maintenance ticks; measured data says daily.
 - `C-0011`: Frontier says the overrides "may stack"; the guide says they do not.
 - `C-0012`: the guide lists Water World as an Agriculture and High Tech
-  strong-link boost; Frontier's list has it for Tourism only.
+  strong-link boost; Frontier's list has it for Tourism only. The guide says
+  the in-game Codex lists it and experiments confirmed it.
+- `C-0013`: Frontier lists a terraformable body as an Agriculture strong-link
+  boost; the guide reports it bugged and not working. The rulebook marks that
+  condition `Disputed`.
+
+`RB-0012` (stacking) and `RB-0022` (population ticks) are `Disputed`; each
+gives the working rule in its statement.
 
 ### Limitations
 

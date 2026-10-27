@@ -16,7 +16,7 @@ This is the canonical entry point for the current structured knowledge base.
 ## Start here
 
 - `rulebook/rulebook.json` and `rulebook/README.md`
-  The published, versioned rulebook (26 rules in CRE Knowledge v0.3.0) that ed-finder reads.
+  The published, versioned rulebook (27 rules in CRE Knowledge v0.3.0) that ed-finder reads.
 - `docs/source_coverage_register.md`
   What was actually processed, and which named source artifacts are still absent.
 - `mechanics/index.md`

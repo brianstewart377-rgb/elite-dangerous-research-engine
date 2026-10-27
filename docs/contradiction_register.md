@@ -157,3 +157,17 @@ This register records durable contradictions and unresolved conflicts discovered
 - Testing status: Needs live verification
 - Contradictions: Guide list versus first-party list
 - Unknowns: Whether the boosts were added after the post or the post omitted them
+- Note: The guide says the in-game Codex lists the Agriculture and High Tech Water World boosts and that experiments confirmed them (MG-0001 PDF page 2, footnote 2). CRE does not hold the Codex text, so they stay `Extracted`.
+
+## C-0013 - Terraformable body as an Agriculture strong-link boost
+
+- Category: Documentation versus observed behaviour
+- Description: Frontier's Trailblazers Update 3 post lists "on or orbiting a terraformable body" as an Agriculture strong-link boost. The Mega Guide lists the same boost but marks it "PRESENTLY BUGGED - NOT WORKING".
+- Source: `reference_sources/FD-0001-trailblazers-update-3/README.md`, `reference_sources/MG-0001-megaguide-v2-3/mega-guide-v2.3.0-pdftotext.txt`
+- Exact location: FD-0001 strong-link lists; MG-0001 PDF page 55
+- Confidence: Medium (the guide reports in-game behaviour; a later patch may have fixed it)
+- Related mechanics: `M-0006`
+- Planner implications: The rulebook marks the condition `Disputed` in `RB-0018`; do not apply the boost until a live test shows it working.
+- Testing status: Needs live verification
+- Contradictions: Documented boost versus reported in-game behaviour
+- Unknowns: Whether the boost works in the current game version

@@ -183,9 +183,26 @@ def check_scores(rule_id: str, value: dict, pages: list[str]) -> None:
     for name, score in scores.items():
         if type(score) is not int or score < 1:
             raise RulebookError(f"{rule_id}: invalid score for {name}")
-        # The appendix prints every entry as "<facility> : <score>".
-        if normalise(f"{name} : {score}") not in pages[page - 1]:
-            raise RulebookError(f"{rule_id}: '{name} : {score}' not found on MG-0001 PDF page {page}")
+    # The appendix prints every entry as "<facility> : <score>" (names such as
+    # "Agriculture Settlement: Small" have no space before their own colon).
+    # Parse the whole list and compare complete values, so a score that is a
+    # prefix of the printed one ("1" for "15") is refused.
+    header = "Appendix C: Detailed By-Facility System Scores"
+    text = pages[page - 1]
+    start = text.find(header)
+    end = text.find("Elite Dangerous Colonization Mega Guide", start + 1)
+    if start < 0 or end < 0:
+        raise RulebookError(f"{rule_id}: Appendix C list not found on MG-0001 PDF page {page}")
+    body = text[start + len(header):end].strip()
+    entries = re.findall(r"(\S.*?) : (\d+)(?= |$)", body)
+    if " ".join(f"{name} : {score}" for name, score in entries) != body:
+        raise RulebookError(f"{rule_id}: could not parse the Appendix C list on MG-0001 PDF page {page}")
+    printed = {name: int(score) for name, score in entries}
+    if len(printed) != len(entries):
+        raise RulebookError(f"{rule_id}: the Appendix C list repeats a facility")
+    if printed != scores:
+        wrong = sorted(set(printed.items()) ^ set(scores.items()))
+        raise RulebookError(f"{rule_id}: scores differ from MG-0001 PDF page {page}: {wrong}")
 
 
 def check_economy_lists(rule_id: str, mapping: dict) -> None:
@@ -194,7 +211,7 @@ def check_economy_lists(rule_id: str, mapping: dict) -> None:
             raise RulebookError(f"{rule_id}: {key} must list known economies")
 
 
-def check_strong_link_modifiers(rule_id: str, value: dict, sources: dict[str, dict[str, str]]) -> None:
+def check_strong_link_modifiers(rule_id: str, value: dict, sources: dict[str, dict[str, str]], rule_contradictions: list[str]) -> None:
     for economy, entry in value.items():
         if economy not in ECONOMIES:
             raise RulebookError(f"{rule_id}: unknown economy {economy}")
@@ -205,8 +222,16 @@ def check_strong_link_modifiers(rule_id: str, value: dict, sources: dict[str, di
                 listed = condition.get("listed_by")
                 if not listed or not set(listed) <= set(sources):
                     raise RulebookError(f"{rule_id}: {economy} {condition['condition']} needs registered listed_by sources")
-                if condition.get("status") not in STATUSES:
+                status = condition.get("status")
+                if status not in STATUSES:
                     raise RulebookError(f"{rule_id}: {economy} {condition['condition']} has an invalid status")
+                if status in ("Confirmed", "Likely") and not any(source.startswith("FD-") for source in listed):
+                    raise RulebookError(f"{rule_id}: {economy} {condition['condition']} is {status} but no FD- source lists it")
+                contradiction = condition.get("contradiction")
+                if (status == "Disputed") != (contradiction is not None):
+                    raise RulebookError(f"{rule_id}: {economy} {condition['condition']} needs a contradiction exactly when Disputed")
+                if contradiction is not None and contradiction not in rule_contradictions:
+                    raise RulebookError(f"{rule_id}: {economy} {condition['condition']} cites {contradiction}, which the rule does not list")
 
 
 def validate(rulebook: dict) -> list[str]:
@@ -268,7 +293,7 @@ def validate(rulebook: dict) -> list[str]:
             check_economy_lists(rule_id, value["economies"])
             check_against_fd_overrides(rule_id, value["economies"], overrides)
         elif kind == "strong_link_modifiers":
-            check_strong_link_modifiers(rule_id, value["economies"], sources)
+            check_strong_link_modifiers(rule_id, value["economies"], sources, rule["contradictions"])
         messages.append(f"ok {rule_id} {rule['status']:<9} {rule['title']}")
     return messages
 

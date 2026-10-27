@@ -118,6 +118,11 @@
           "source_id": "MG-0001",
           "page": 26,
           "quote": "Tier 3 facilities - cost tier 3 construction points, do not generate any construction points"
+        },
+        {
+          "source_id": "MG-0001",
+          "page": 95,
+          "quote": "it is now possible to “go into the negative” with regards to construction points"
         }
       ],
       "related": [
@@ -128,7 +133,8 @@
       ],
       "contradictions": [],
       "caveats": [
-        "The Primary Port is an exception: it needs no construction points (RB-0004)."
+        "The Primary Port is an exception: it needs no construction points (RB-0004).",
+        "Deconstructing facilities can take a system's construction points negative; the guide describes farming Tier 3 points this way and digging out of the 'negative T3 CP hole' before building more (MG-0001 page 95)."
       ]
     },
     {
@@ -136,7 +142,7 @@
       "topic": "construction_points",
       "title": "Tier 2 and Tier 3 port construction-point escalation",
       "status": "Extracted",
-      "statement": "Each Tier 2 or Tier 3 port after the Primary Port costs more construction points than the one before. Ports are counted together, T2 and T3, in the order their construction starts. A T2 port (Coriolis, Asteroid Base) costs 3, 3, 5, 7, 9 yellow points as the 1st to 5th counted port, then 3+(n-2)*2. A T3 port (Orbis, Ocellus, T3 Planetary Port) costs 6, 6, 12, 18, 24 green points, then (n-1)*6. Material costs do not change.",
+      "statement": "Tier 2 and Tier 3 ports after the Primary Port get more expensive in construction points as more are built: the 1st and 2nd counted ports cost the same, and every later one costs more. Ports are counted together, T2 and T3, in the order their construction starts. A T2 port (Coriolis, Asteroid Base) costs 3, 3, 5, 7, 9 yellow points as the 1st to 5th counted port, then 3+(n-2)*2. A T3 port (Orbis, Ocellus, T3 Planetary Port) costs 6, 6, 12, 18, 24 green points, then (n-1)*6. Material costs do not change.",
       "value": {
         "kind": "cp_port_escalation",
         "counting": "T2 and T3 ports counted together in the order construction starts; the Primary Port is not counted",
@@ -393,7 +399,7 @@
         },
         "specialised_baseline_strength": {
           "industrial_or_scientific_ground_port": 0.5,
-          "several_orbital_versions": 1.0
+          "unnamed_orbital_versions": 1.0
         }
       },
       "sources": [
@@ -401,6 +407,11 @@
           "source_id": "MG-0001",
           "page": 48,
           "quote": "Assigned a baseline economic strength value of 0.5 (industrial/scientific ground ports)"
+        },
+        {
+          "source_id": "MG-0001",
+          "page": 48,
+          "quote": "or 1.012 (several orbital versions) for their applicable economy type"
         },
         {
           "source_id": "MG-0001",
@@ -419,7 +430,8 @@
       ],
       "contradictions": [],
       "caveats": [
-        "The extraction reads '1.012': that is 1.0 followed by footnote 12, which says 1.0 means 100% and strengths routinely go above 1."
+        "The extraction reads '1.012': that is 1.0 followed by footnote 12, which says 1.0 means 100% and strengths routinely go above 1.",
+        "The guide says 1.0 applies to 'several orbital versions' without naming them, so the orbital specialised ports and the Asteroid Base cannot be mapped to 0.5 or 1.0 from this rule."
       ]
     },
     {
@@ -519,7 +531,7 @@
       ],
       "contradictions": [],
       "caveats": [
-        "Each inherited economy has strength 1.0 before links (RB-0012)."
+        "Each inherited economy has strength 1.0 before other modifiers and links (RB-0012); volcanism also adds a bonus of undocumented size to planetary intrinsic values (RB-0013)."
       ]
     },
     {
@@ -527,7 +539,7 @@
       "topic": "economy",
       "title": "Local body modifiers add economies",
       "status": "Confirmed",
-      "statement": "Rings (including stars with asteroid belts) add Extraction; organics add Agriculture and Terraforming; geologicals add Extraction and Industrial. Earth-like, water and ammonia worlds and gas giants cannot have geological or biological overrides.",
+      "statement": "Rings (including stars with asteroid belts) add Extraction; organics add Agriculture and Terraforming; geologicals add Extraction and Industrial.",
       "value": {
         "kind": "local_body_modifiers",
         "economies": {
@@ -542,13 +554,7 @@
             "Extraction",
             "Industrial"
           ]
-        },
-        "bodies_without_geological_or_biological_overrides": [
-          "earth_like_world",
-          "water_world",
-          "ammonia_world",
-          "gas_giant"
-        ]
+        }
       },
       "sources": [
         {
@@ -562,16 +568,6 @@
         {
           "source_id": "FD-0001",
           "quote": "\"Has geologicals\": \"Extraction\", \"Industrial\""
-        },
-        {
-          "source_id": "MG-0001",
-          "page": 70,
-          "quote": "Note: Gas Giants cannot have geological or biological overrides"
-        },
-        {
-          "source_id": "MG-0001",
-          "page": 70,
-          "quote": "Note: ELWs cannot have geological or biological overrides"
         }
       ],
       "related": [
@@ -579,7 +575,8 @@
       ],
       "contradictions": [],
       "caveats": [
-        "Geologicals (found with a Detailed Surface Scanner) are different from volcanism, which is a strong-link modifier (MG-0001 page 50)."
+        "Geologicals (found with a Detailed Surface Scanner) are different from volcanism, which is a strong-link modifier (MG-0001 page 50).",
+        "Which bodies can carry geological or biological overrides is a separate, guide-only rule (RB-0027)."
       ]
     },
     {
@@ -587,7 +584,7 @@
       "topic": "economy",
       "title": "Body economies and modifiers do not stack",
       "status": "Disputed",
-      "statement": "An inherited economy has strength 1.0 whether it comes from the body, from a modifier, or from both, and modifiers do not stack with each other: an Icy body with geologicals has Industrial 1.0, not 2.0; a high metal content body with rings and geologicals has Extraction 1.0, not 3.0.",
+      "statement": "An inherited economy has strength 1.0 before any other modifiers, whether it comes from the body, from a modifier, or from both, and modifiers do not stack with each other: an Icy body with geologicals has Industrial 1.0, not 2.0; a high metal content body with rings and geologicals has Extraction 1.0, not 3.0.",
       "value": {
         "kind": "inheritance_strength",
         "inherited_economy_strength": 1.0,
@@ -618,7 +615,8 @@
         "C-0011"
       ],
       "caveats": [
-        "Frontier's 'may stack' plausibly means that different economies can be added together, which the guide agrees with; the guide's worked examples are the working rule until a live test settles it."
+        "Frontier's 'may stack' plausibly means that different economies can be added together, which the guide agrees with; the guide's worked examples are the working rule until a live test settles it.",
+        "Other modifiers can still change the 1.0: the guide says volcanism also boosts planetary intrinsic values (footnote 13, MG-0001 page 50; RB-0013), and its revision table lists 'TO FIX: Modifiers on planetary intrinsics DO apply' (page 2)."
       ]
     },
     {
@@ -708,7 +706,7 @@
       "topic": "links",
       "title": "Weak links are a fixed 0.05",
       "status": "Likely",
-      "statement": "Every facility with an economy type, except ports, sends a weak link to every port outside its local body. A weak link is worth a fixed 0.05 and is never modified.",
+      "statement": "Every supporting facility with an economy type sends a weak link to every port outside its local body. Ports converted to supporting facilities do too, except the oldest top-tier planetary port that links to an orbital port on the same body (RB-0020). A weak link is worth a fixed 0.05 and is never modified.",
       "value": {
         "kind": "link_strength",
         "weak": 0.05,
@@ -719,6 +717,11 @@
           "source_id": "MG-0001",
           "page": 53,
           "quote": "Weak links have a fixed value of 0.05 per weak link; this value is NOT subject to any modifier, ever"
+        },
+        {
+          "source_id": "MG-0001",
+          "page": 60,
+          "quote": "also emit weak links to every other port outside of the local body"
         },
         {
           "source_id": "FD-0001",
@@ -735,15 +738,15 @@
       ],
       "contradictions": [],
       "caveats": [
-        "Ports that became supporting facilities by being subordinate to another port on the same body are not affected by weak links (MG-0001 page 53, footnote 19)."
+        "Ports converted to supporting facilities are shielded from incoming weak links (MG-0001 page 53, footnote 19, and page 60)."
       ]
     },
     {
       "id": "RB-0017",
       "topic": "links",
       "title": "Strong links form only on the same body",
-      "status": "Confirmed",
-      "statement": "Strong links form between supporting (non-port) facilities and a port on or around the same local body, at most one per facility and port. A supporting facility on a body with no port forms no strong links but still sends weak links.",
+      "status": "Likely",
+      "statement": "Strong links form between supporting facilities (including ports converted to supporting facilities) and a port on or around the same local body, at most one per facility and port. A supporting facility on a body with no port forms no strong links but still sends weak links.",
       "value": {
         "kind": "flag",
         "strong_links_per_facility_per_port": 1
@@ -762,6 +765,17 @@
           "source_id": "MG-0001",
           "page": 55,
           "quote": "If there are no ports in the same local body of a supporting facility, said facility will simply not form any strong links"
+        },
+        {
+          "source_id": "MG-0001",
+          "page": 7,
+          "quote": "will also act as supporting facilities (and thus emit strong and weak links.)"
+        },
+        {
+          "source_id": "MG-0001",
+          "page": 55,
+          "footnote": 20,
+          "quote": "If both one (or more) planetary port AND one (or more) space port are present, strong links will form with both the planetary AND space primary ports."
         }
       ],
       "related": [
@@ -769,7 +783,9 @@
       ],
       "contradictions": [],
       "caveats": [
-        "With several ports on one body, strong links go to the highest-tier port (earliest built if tied), and planetary ports pass their links on to the orbital port (RB-0020)."
+        "Frontier states only that strong links form on or around the same body; 'at most one', and 'no port means no strong links', are the guide's (MG-0001 page 55).",
+        "With several ports on one body, strong links go to the highest-tier port (earliest built if tied) (RB-0020).",
+        "Footnote 20 (MG-0001 page 55): if both one or more planetary ports and one or more space ports are present, strong links form with both the planetary and the space primary ports. Page 59 describes the same case as the planetary port passing its links on to the orbital port."
       ]
     },
     {
@@ -804,8 +820,9 @@
                   "FD-0001",
                   "MG-0001"
                 ],
-                "status": "Confirmed",
-                "in_game": "not working (bugged) per MG-0001 page 55"
+                "status": "Disputed",
+                "in_game": "not working (bugged) per MG-0001 page 55",
+                "contradiction": "C-0013"
               },
               {
                 "condition": "on_or_orbiting_body_with_organics",
@@ -834,12 +851,19 @@
                 "status": "Confirmed"
               },
               {
-                "condition": "on_or_orbiting_moon_tidally_locked_to_planet_tidally_locked_to_star",
+                "condition": "orbiting_moon_tidally_locked_to_planet_tidally_locked_to_star",
                 "listed_by": [
                   "FD-0001",
                   "MG-0001"
                 ],
                 "status": "Confirmed"
+              },
+              {
+                "condition": "on_moon_tidally_locked_to_planet_tidally_locked_to_star",
+                "listed_by": [
+                  "MG-0001"
+                ],
+                "status": "Extracted"
               }
             ]
           },
@@ -1063,6 +1087,12 @@
         {
           "source_id": "FD-0001",
           "quote": "Strong links are subject to boosts or decreases in economic supply performance by the characteristics of the host system or body."
+        },
+        {
+          "source_id": "MG-0001",
+          "page": 2,
+          "footnote": 2,
+          "quote": "This is NOT reported in the patch notes, but IS reported in the in-game Codex, and experimental verification proved that the latter source is correct."
         }
       ],
       "related": [
@@ -1071,12 +1101,17 @@
         "M-0006"
       ],
       "contradictions": [
-        "C-0012"
+        "C-0012",
+        "C-0013"
       ],
       "caveats": [
         "The FD-0001 lists are recorded as an itemisation, not a verbatim copy; check the post before quoting it.",
         "Binary planets and moons of planets count as separate bodies for these conditions (MG-0001 page 55, footnote 21).",
-        "Military has no documented strong-link modifiers."
+        "Military has no documented strong-link modifiers.",
+        "'Life' on water worlds, ammonia worlds, gas giants and Earth-like worlds does not count as organics for these conditions (MG-0001 page 56, footnote 22).",
+        "The Agriculture and HighTech water-world boosts are guide-only here, but the guide says they are listed in the in-game Codex and that experiments confirmed them (MG-0001 page 2, footnote 2; C-0012).",
+        "Frontier lists the terraformable Agriculture boost, but the guide reports it 'PRESENTLY BUGGED - NOT WORKING' (MG-0001 page 55), so it is marked Disputed (C-0013); do not apply it.",
+        "Frontier lists the moon tidal-lock Agriculture decrease only for ports orbiting such a moon; the guide also lists ports on it (MG-0001 page 55)."
       ]
     },
     {
@@ -1123,14 +1158,16 @@
       "topic": "links",
       "title": "Several ports on one body: which port receives the links",
       "status": "Extracted",
-      "statement": "With several ports on or around one body, strong links go to the highest-tier port, or the earliest built if tiers are equal. If both planetary and orbital ports exist, planetary facilities link to the planetary port, which passes the links on to the orbital port. All ports but one on a body become supporting facilities. The guide advises against more than one port per body.",
+      "statement": "With several ports on or around one body, strong links go to the highest-tier port, or the earliest built if tiers are equal. If only planetary or only orbital ports exist, every port except the earliest-built highest-tier one becomes a supporting facility. If both exist, all planetary ports but one become supporting facilities whatever their tier, and the orbital ports follow the rule above; the remaining planetary port (the oldest top-tier one) forms strong links with the orbital port and passes its links on, but sends no weak links. The guide advises against more than one port per body.",
       "value": {
         "kind": "port_priority",
         "priority": [
           "highest_tier",
           "earliest_built"
         ],
-        "planetary_passes_to_orbital": true
+        "planetary_passes_to_orbital": true,
+        "planetary_ports_convert_regardless_of_tier": true,
+        "remaining_planetary_port_sends_weak_links": false
       },
       "sources": [
         {
@@ -1147,6 +1184,21 @@
           "source_id": "MG-0001",
           "page": 59,
           "quote": "Building more than one port on or around a given local body is a bad idea."
+        },
+        {
+          "source_id": "MG-0001",
+          "page": 60,
+          "quote": "all but one planetary ports are converted to supporting facilities, regardless of their tier"
+        },
+        {
+          "source_id": "MG-0001",
+          "page": 60,
+          "quote": "they DO form strong links with the space port but DO NOT generate weak links to all other ports"
+        },
+        {
+          "source_id": "MG-0001",
+          "page": 59,
+          "quote": "confusing, potentially bugged, and rather clunky"
         }
       ],
       "related": [
@@ -1156,7 +1208,9 @@
       "contradictions": [],
       "caveats": [
         "The guide quotes this as Frontier's official documentation, but CRE does not hold the first-party text, so it is not Confirmed here.",
-        "Planetary ports also pass their planet's inherent economy to the spaceport above them; the guide believes this is a bug (MG-0001 page 59)."
+        "Planetary ports also pass their planet's inherent economy to the spaceport above them; the guide believes this is a bug (MG-0001 page 59).",
+        "The guide calls these mechanics 'confusing, potentially bugged, and rather clunky' (MG-0001 page 59).",
+        "Footnote 20 (MG-0001 page 55) says strong links form with both the planetary and the space primary ports when both are present (RB-0017)."
       ]
     },
     {
@@ -1164,7 +1218,7 @@
       "topic": "markets",
       "title": "Top-two economies protect their supply, not their demand",
       "status": "Likely",
-      "statement": "The goods produced by a port's two strongest economies are not consumed by other economies linked to that port: supply of the top two is protected. Demand of the top two is not protected and is netted against the supply of every other economy. Economies are ranked by strength; the tie-breaker for equal strength is unknown (presumed alphabetical).",
+      "statement": "The goods produced by a port's two strongest economies are not consumed by other economies linked to that port: supply of the top two is protected, and demand for goods the top two supply is disregarded. Demand of the top two is not protected: it is netted against the supply of any economy outside the top two, and supply and demand of all other economies are netted together. Economies are ranked by strength; the tie-breaker for equal strength is unknown (presumed alphabetical).",
       "value": {
         "kind": "market_protection",
         "protected_ranks": [
@@ -1174,7 +1228,8 @@
         "protects": "supply",
         "demand_protected": false,
         "rank_by": "strength",
-        "tie_breaker": "unknown (presumed alphabetical)"
+        "tie_breaker": "unknown (presumed alphabetical)",
+        "demand_for_top_two_supplied_goods": "disregarded"
       },
       "sources": [
         {
@@ -1185,6 +1240,16 @@
           "source_id": "MG-0001",
           "page": 69,
           "quote": "This protection does not extend to the demand of such “top two economies”."
+        },
+        {
+          "source_id": "MG-0001",
+          "page": 69,
+          "quote": "The demand of the top two ports can and will be netted against the supply of any other non-top-two economy."
+        },
+        {
+          "source_id": "MG-0001",
+          "page": 69,
+          "quote": "if demand for commodities supplied by the top two economies is also present, it is simply disregarded (vs netted)"
         },
         {
           "source_id": "MG-0001",
@@ -1207,8 +1272,8 @@
       "id": "RB-0022",
       "topic": "population",
       "title": "Population growth phases",
-      "status": "Extracted",
-      "statement": "Population grows in two phases: a fixed-value phase of 14 ticks, then a logistic curve that approaches its asymptote (K) after about a year. The fixed-value ticks are daily, usually spread over 15 days (13 full ticks plus partial ticks on day C+1 and C+15, sometimes C+16). The logistic phase inflects at 100 days for space ports and 120 days for planetary ports. A station reaches about 20% of K and 44.72% of its population-driven production after the first phase.",
+      "status": "Disputed",
+      "statement": "Population grows in two phases: a fixed-value phase of 14 ticks, then a logistic curve that approaches its asymptote (K) after about a year. The fixed-value ticks are daily, usually spread over 15 days (13 full ticks plus partial ticks on day C+1 and C+15, sometimes C+16). The logistic phase inflects at 100 days for space ports; for planetary ports the guide says the formula 'appears similar' with the inflection at 120 days. A station reaches about 20% of K and 44.72% of its population-driven production after the first phase.",
       "value": {
         "kind": "population_growth",
         "fixed_phase_ticks": 14,
@@ -1263,7 +1328,9 @@
         "C-0010"
       ],
       "caveats": [
-        "The exact growth formula is an image in the guide and is not in this rulebook."
+        "The exact growth formula is an image in the guide and is not in this rulebook.",
+        "Frontier's post says populations grow on each weekly maintenance tick; the guide's measured data says the first-phase ticks are daily (C-0010). Daily is the working rule.",
+        "The guide counts the first phase as '13 \"full ticks\"' in footnote 27 (page 77) and '(14 full ticks)' on page 79."
       ]
     },
     {
@@ -1271,7 +1338,7 @@
       "topic": "population",
       "title": "Production grows with the square root of population",
       "status": "Extracted",
-      "statement": "A facility's supply and demand grow with the square root of its own population. Population raises only that facility's production, not other facilities in the system. A Coriolis's population-driven production is 18.11% of an Orbis's.",
+      "statement": "A facility's supply and demand grow with the square root of its own population. Population raises only that facility's production, not other facilities in the system. Other factors being equal, a Coriolis's population-driven production is 18.11% of an Orbis's.",
       "value": {
         "kind": "population_output",
         "output_exponent": 0.5,
@@ -1307,7 +1374,8 @@
       ],
       "contradictions": [],
       "caveats": [
-        "The first-party wording (quoted by the guide on page 76) says output follows population but gives no exponent; the square root is the guide's measurement."
+        "The first-party wording (quoted by the guide on page 76) says output follows population but gives no exponent; the square root is the guide's measurement.",
+        "18.11% is the square root of 100m / 3.05bn: the Earth-like-world Tier 2 and Tier 3 orbital K values, with the Tier 3 K taken from the image caption on page 78 rather than the table's 3,100m (which would give 17.96%)."
       ]
     },
     {
@@ -1406,6 +1474,11 @@
           "source_id": "MG-0001",
           "page": 79,
           "quote": "Icy Body Tier 1 - Orb. 2,221 5.43k 76.02k 380.01k TBD"
+        },
+        {
+          "source_id": "MG-0001",
+          "page": 79,
+          "quote": "at the very least it applies to the main spaceport in orbit and to the largest planetary port on the surface."
         }
       ],
       "related": [
@@ -1418,7 +1491,8 @@
       "caveats": [
         "The image caption on page 78 gives K as 3.05 billion for an ELW Tier 3 port; the table prints 3,100m.",
         "For the two Tier 1 orbital rows the printed ratios differ from the Tier 3 rows (C+15 is about 1.4% of K and the inflection column about 20% of K), so those rows may be shifted or measured differently; use them with care.",
-        "Rows the guide lists entirely as TBD (for example water world Tier 2) are omitted."
+        "Rows the guide lists entirely as TBD (for example water world Tier 2) are omitted.",
+        "The guide does not know which ports the body population multiplier applies to: 'at the very least' the main spaceport in orbit and the largest planetary port (MG-0001 page 79)."
       ]
     },
     {
@@ -1554,6 +1628,51 @@
       "contradictions": [],
       "caveats": [
         "Facility names are the guide's own; the validator checks every entry against the appendix text."
+      ]
+    },
+    {
+      "id": "RB-0027",
+      "topic": "economy",
+      "title": "Bodies that cannot carry geological or biological overrides",
+      "status": "Extracted",
+      "statement": "Earth-like worlds, water worlds, ammonia worlds and gas giants cannot have geological or biological overrides; rings can still add Extraction to them.",
+      "value": {
+        "kind": "override_exclusions",
+        "bodies_without_geological_or_biological_overrides": [
+          "earth_like_world",
+          "water_world",
+          "ammonia_world",
+          "gas_giant"
+        ]
+      },
+      "sources": [
+        {
+          "source_id": "MG-0001",
+          "page": 70,
+          "quote": "Note: Gas Giants cannot have geological or biological overrides"
+        },
+        {
+          "source_id": "MG-0001",
+          "page": 70,
+          "quote": "Note: AWs cannot have geological or biological overrides"
+        },
+        {
+          "source_id": "MG-0001",
+          "page": 70,
+          "quote": "Note: WWs cannot have geological or biological overrides"
+        },
+        {
+          "source_id": "MG-0001",
+          "page": 70,
+          "quote": "Note: ELWs cannot have geological or biological overrides"
+        }
+      ],
+      "related": [
+        "M-0008"
+      ],
+      "contradictions": [],
+      "caveats": [
+        "Frontier's override list (FD-0001) does not say this; it is the guide's statement only."
       ]
     }
   ]

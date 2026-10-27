@@ -125,7 +125,7 @@ A decision explains why the repository adopted, rejected, or preserved a specifi
 - Decision: The CRE's job is a versioned rulebook (`rulebook/rulebook.json`, exported as `exports/rulebook.json` and tagged `cre-knowledge-vX.Y.Z`) that ed-finder reads at a pinned version and checksum. Live experiments remain an optional extra. Rules enter or change only after owner review (owner decision 2026-10-21: evidence may suggest rule changes, but nothing enters the rulebook until the owner approves it).
 - Rationale: A pinned, validated file gives ed-finder one place to take rule values from, makes every value traceable to a quoted source, and lets ed-finder test its hand-coded constants against it without changing live behaviour.
 - Trade-offs: Rule changes now go through a release and an ed-finder update instead of being edited in place; the research registers stay the working space behind the rulebook.
-- Consequences: CRE Knowledge v0.3.0 publishes the first rulebook (26 rules) with a validator that checks every quote against the committed source text. ed-finder vendors the tagged file and adds a parity test.
+- Consequences: CRE Knowledge v0.3.0 publishes the first rulebook (27 rules) with a validator that checks every quote against the committed source text. ed-finder vendors the tagged file and adds a parity test.
 - Evidence references: None
 - Claim references: `CL-0013`, `CL-0146`, `CL-0147`
 - Mechanic references: `M-0004`, `M-0006`, `M-0008`, `M-0010`, `M-0012`, `M-0013`
