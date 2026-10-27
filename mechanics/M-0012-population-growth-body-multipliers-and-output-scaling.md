@@ -2,7 +2,7 @@
 
 ## Summary
 
-Population is one of the clearest long-run scaling mechanics in colonisation. It grows on a weekly hybrid curve, scales commodity output by square root rather than linearly, and depends heavily on both facility class and local body type.
+Population is one of the clearest long-run scaling mechanics in colonisation. It grows on a hybrid curve (a fixed-value phase of daily ticks over about 15 days, then a logistic curve), scales commodity output by square root rather than linearly, and depends heavily on both facility class and local body type.
 
 ## Status
 
@@ -16,8 +16,9 @@ The global shape of the rule is strong, while some body-specific multipliers rem
 
 ## Mechanic statement
 
-- Population grows on weekly maintenance ticks.
-- Early growth uses fixed values for 14 ticks, then transitions into a logistic curve.
+- Early growth uses fixed values for 14 ticks, then transitions into a logistic curve that approaches its asymptote after about a year.
+- The early ticks are daily, usually spread over 15 days (13 full ticks plus partial ticks on C+1 and C+15/16; guide PDF page 77, footnote 27). Frontier's patch wording says "weekly maintenance tick" (`FD-0001`); see `C-0010`. Before v0.3.0 this mechanic said "weekly" because the DOCX extraction lost footnote 27.
+- The logistic phase inflects at 100 days for space ports and 120 days for planetary ports (guide PDF pages 78-79, footnotes 28-29).
 - Output scales with the square root of facility population.
 - Population is attached to individual facilities, not automatically spread across the whole system.
 - Body class and facility class both materially change asymptotic population and therefore long-run output.
@@ -34,6 +35,8 @@ The global shape of the rule is strong, while some body-specific multipliers rem
 
 - `evidence/claim_register.csv`
 - `mechanics/population_rules_register.md`
+- `reference_sources/MG-0001-megaguide-v2-3/mega-guide-v2.3.0-pdftotext.txt` (PDF pages 76-80)
+- `reference_sources/FD-0001-trailblazers-update-3/README.md`
 
 ## Related mechanics
 

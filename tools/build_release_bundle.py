@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import re
 import shutil
@@ -579,6 +580,59 @@ def copy_graph_edges_csv(output_dir: Path) -> int:
     return copy_text_file(src, output_dir / "graph_edges.csv")
 
 
+REGISTER_FIELDS = [
+    "rule_id",
+    "title",
+    "status",
+    "rule",
+    "related_mechanics",
+    "planner_implications",
+    "testing_status",
+    "contradictions",
+    "unknowns",
+    "source",
+]
+REGISTER_REQUIRED = ["status", "source", "rule", "related_mechanics", "planner_implications", "testing_status"]
+
+
+def build_population_rules_csv(output_dir: Path) -> int:
+    return build_register_csv(
+        output_dir=output_dir,
+        source_path=REPO_ROOT / "mechanics" / "population_rules_register.md",
+        output_name="population_rules.csv",
+        fieldnames=REGISTER_FIELDS,
+        required_fields=REGISTER_REQUIRED,
+        value_map={"rule_id": "id", "source": "source"},
+    )
+
+
+def build_market_rules_csv(output_dir: Path) -> int:
+    return build_register_csv(
+        output_dir=output_dir,
+        source_path=REPO_ROOT / "mechanics" / "market_rules_register.md",
+        output_name="market_rules.csv",
+        fieldnames=REGISTER_FIELDS,
+        required_fields=REGISTER_REQUIRED,
+        value_map={"rule_id": "id", "source": "source"},
+    )
+
+
+def validated_rulebook() -> dict:
+    """The rulebook must pass its own validator before it is exported."""
+    sys.path.insert(0, str(REPO_ROOT / "tools"))
+    import validate_rulebook  # noqa: PLC0415 - local tool, imported on demand
+
+    rulebook = json.loads((REPO_ROOT / "rulebook" / "rulebook.json").read_text(encoding="utf-8"))
+    validate_rulebook.validate(rulebook)
+    return rulebook
+
+
+def copy_rulebook_json(output_dir: Path) -> int:
+    rulebook = validated_rulebook()
+    copy_text_file(REPO_ROOT / "rulebook" / "rulebook.json", output_dir / "rulebook.json")
+    return len(rulebook["rules"])
+
+
 EXPORT_SPECS: list[ExportSpec] = [
     ExportSpec("mechanics.csv", "csv", "mechanics/index.md", build_mechanics_csv),
     ExportSpec("planner_rules.csv", "csv", "planner/planner_rules_register.md", build_planner_rules_csv),
@@ -596,7 +650,12 @@ EXPORT_SPECS: list[ExportSpec] = [
     ExportSpec("live_verification_matrix.csv", "csv", "experiments/live_verification_matrix.csv", copy_live_verification_matrix_csv),
     ExportSpec("graph_nodes.csv", "csv", "ontology/knowledge_graph_nodes.csv", copy_graph_nodes_csv),
     ExportSpec("graph_edges.csv", "csv", "ontology/knowledge_graph_edges.csv", copy_graph_edges_csv),
+    ExportSpec("population_rules.csv", "csv", "mechanics/population_rules_register.md", build_population_rules_csv),
+    ExportSpec("market_rules.csv", "csv", "mechanics/market_rules_register.md", build_market_rules_csv),
+    ExportSpec("rulebook.json", "json", "rulebook/rulebook.json", copy_rulebook_json),
 ]
+
+KNOWLEDGE_VERSION = "0.3.0"
 
 
 def assemble_exports(output_dir: Path) -> dict:
@@ -606,21 +665,23 @@ def assemble_exports(output_dir: Path) -> dict:
         source_path = REPO_ROOT / spec.source
         require_file(source_path)
         record_count = spec.builder(output_dir)
-        exports.append(
-            OrderedDict(
-                [
-                    ("path", str(Path(output_dir.name) / spec.output_name) if output_dir == DEFAULT_OUTPUT else spec.output_name),
-                    ("format", spec.format),
-                    ("source", spec.source),
-                    ("record_count", record_count),
-                ]
-            )
+        entry = OrderedDict(
+            [
+                ("path", str(Path(output_dir.name) / spec.output_name) if output_dir == DEFAULT_OUTPUT else spec.output_name),
+                ("format", spec.format),
+                ("source", spec.source),
+                ("record_count", record_count),
+            ]
         )
+        if spec.format == "json":
+            entry["sha256"] = hashlib.sha256((output_dir / spec.output_name).read_bytes()).hexdigest()
+        exports.append(entry)
         print(f"built {spec.output_name} ({record_count} rows)")
 
     manifest = OrderedDict(
         [
-            ("export_manifest_version", "0.2.0-draft"),
+            ("export_manifest_version", KNOWLEDGE_VERSION),
+            ("release_tag", f"cre-knowledge-v{KNOWLEDGE_VERSION}"),
             ("generated_at", utc_now_iso()),
             ("status", "assembled"),
             ("purpose", "Deterministically assembled release-oriented exports derived from canonical repository registers."),
@@ -660,6 +721,17 @@ def validate_exports(output_dir: Path) -> None:
             raise ValueError(f"Manifest source mismatch for {spec.output_name}: {item['source']} != {spec.source}")
         if item["format"] != spec.format:
             raise ValueError(f"Manifest format mismatch for {spec.output_name}: {item['format']} != {spec.format}")
+        if spec.format == "json":
+            rulebook = json.loads(expected_path.read_text(encoding="utf-8"))
+            if len(rulebook["rules"]) != item["record_count"]:
+                raise ValueError(f"Rule count mismatch for {spec.output_name}")
+            if hashlib.sha256(expected_path.read_bytes()).hexdigest() != item.get("sha256"):
+                raise ValueError(f"Checksum mismatch for {spec.output_name}")
+            if expected_path.read_bytes() != (REPO_ROOT / spec.source).read_bytes():
+                raise ValueError(f"{spec.output_name} differs from its canonical source {spec.source}")
+            if rulebook["knowledge_version"] != manifest.get("export_manifest_version"):
+                raise ValueError("rulebook knowledge_version differs from the manifest version")
+            print(f"validated {spec.output_name} ({item['record_count']} rules, sha256 {item['sha256']})")
         if spec.format == "csv":
             actual_count = count_csv_rows(expected_path)
             if actual_count != item["record_count"]:

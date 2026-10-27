@@ -114,3 +114,24 @@ A decision explains why the repository adopted, rejected, or preserved a specifi
 - Superseded by: None
 - Confidence: High
 - Review status: Governance confirmed
+
+## D-0006 - The CRE publishes a versioned rulebook that ed-finder reads
+
+- Status: Implemented
+- Date: 2026-10-21
+- Context: A 2026-10-21 audit in ed-finder (`docs/development/evidence/2026-10-21-cre-cpe-utilisation-audit.md` there) found that no ed-finder code read anything from this repository, that ed-finder hand-coded its own copies of the game rules (one of them, the T2/T3 port construction-point table, wrong where this repository was right), and that this repository had been inactive since July.
+- Problem statement: The owner needed to decide what this repository is for: an open-ended research lab, or a rulebook that ed-finder reads.
+- Alternatives considered: Keep it as an open-ended research lab; fold it into ed-finder; publish a pinned, machine-readable rulebook with stable IDs, sources and exact values that ed-finder reads at a tagged version.
+- Decision: The CRE's job is a versioned rulebook (`rulebook/rulebook.json`, exported as `exports/rulebook.json` and tagged `cre-knowledge-vX.Y.Z`) that ed-finder reads at a pinned version and checksum. Live experiments remain an optional extra. Rules enter or change only after owner review (owner decision 2026-10-21: evidence may suggest rule changes, but nothing enters the rulebook until the owner approves it).
+- Rationale: A pinned, validated file gives ed-finder one place to take rule values from, makes every value traceable to a quoted source, and lets ed-finder test its hand-coded constants against it without changing live behaviour.
+- Trade-offs: Rule changes now go through a release and an ed-finder update instead of being edited in place; the research registers stay the working space behind the rulebook.
+- Consequences: CRE Knowledge v0.3.0 publishes the first rulebook (27 rules) with a validator that checks every quote against the committed source text. ed-finder vendors the tagged file and adds a parity test.
+- Evidence references: None
+- Claim references: `CL-0013`, `CL-0146`, `CL-0147`
+- Mechanic references: `M-0004`, `M-0006`, `M-0008`, `M-0010`, `M-0012`, `M-0013`
+- Planner rule references: None
+- Experiment references: None
+- Supersedes: None
+- Superseded by: None
+- Confidence: High
+- Review status: Governance confirmed

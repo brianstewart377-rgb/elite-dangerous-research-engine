@@ -1,0 +1,2 @@
+# Byte-exact source texts: never rewrite line endings (checksums are cited).
+reference_sources/**/*.txt -text

@@ -23,6 +23,8 @@ This mechanic is strongly represented in the repository through `FW-0001`, `MG-0
 - If a body has both a Main Surface Port and a Main Orbital Port, strong-link influence may route through the main surface port into the main orbital port, meaning displayed link arrows may aggregate multiple upstream contributors.
 - `FW-0001` presents Main Ports as receiving strong and weak links but not themselves generating weak links, though this remains a live-verification-sensitive part of the routing model.
 - Weak links are received by the highest-tier port on the other body, or the earliest built if the receiving ports are tied.
+- Strong links are worth 0.4 (Tier 1 facility), 0.8 (Tier 2) or 1.2 (Tier 3) before modifiers; weak links are a fixed 0.05 and are never modified (guide PDF page 53). No Tier 3 facility creates strong links by itself; Tier 3 ports can create strong links to each other when more than one is on or around the same body (guide PDF page 53, footnote 18).
+- Strong link modifiers are applied per link, not per economy type (Frontier update 4.1.2.101, `FD-0003`).
 - Adding a second same-body port can change which port receives or emits the relevant weak-link behavior in the illustrated multi-port cases, so that pattern should be treated as a verified warning rather than a universal design rule.
 
 ## Scope
@@ -59,6 +61,8 @@ This mechanic is strongly represented in the repository through `FW-0001`, `MG-0
 - `EV-0004` - Colonisation Reference Documents Pack
 - `reference_sources/FW-0001-strong-weak-links/strong-and-weak-links-illustrated-reference.txt`
 - `reference_sources/MG-0001-megaguide-v2-3/elite-dangerous-colonization-mega-guide-v2-3.txt`
+- `reference_sources/MG-0001-megaguide-v2-3/mega-guide-v2.3.0-pdftotext.txt` (PDF pages 53-58, footnotes 18-19)
+- `reference_sources/FD-0001-trailblazers-update-3/README.md`, `reference_sources/FD-0003-update-4-1-2-101/README.md`
 - prior repository draft `M-0003-strong-and-weak-link-routing.md`
 - `M-0003` - One Weak Refinery Link Is Insufficient To Restore Metals
 

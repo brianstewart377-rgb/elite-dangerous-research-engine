@@ -50,7 +50,9 @@ The canonical repository source set says colony-type ports inherit economy tende
 The repository draft also records a non-stacking claim:
 
 - local body modifiers do not stack with base planet economies
-- local body modifiers do not stack with each other
+- local body modifiers do not stack with each other (Frontier's own post says "These overrides may stack"; see `C-0011`)
+- volcanism is a strong-link modifier, but it ALSO gives a bonus to the planet's intrinsic values (guide PDF page 50, footnote 13)
+- geologicals and rings do not boost Extraction on a body whose intrinsic economy is already Extraction (guide PDF page 51, footnote 14)
 
 ## Scope
 
@@ -78,6 +80,8 @@ The repository draft also records a non-stacking claim:
 ## Evidence basis
 
 - `reference_sources/MG-0001-megaguide-v2-3/elite-dangerous-colonization-mega-guide-v2-3.txt`
+- `reference_sources/MG-0001-megaguide-v2-3/mega-guide-v2.3.0-pdftotext.txt` (PDF pages 48-52, footnotes 12-17)
+- `reference_sources/FD-0001-trailblazers-update-3/README.md`
 - `reference_sources/DM-0001-daftmav-construction-details/DaftMav_Colonization.csv`
 - `EV-0004` - Colonisation Reference Documents Pack
 - prior repository draft `M-0005-local-body-base-economies-and-modifiers.md`

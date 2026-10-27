@@ -1,6 +1,7 @@
 {
-  "export_manifest_version": "0.2.0-draft",
-  "generated_at": "2026-06-29T22:22:06Z",
+  "export_manifest_version": "0.3.0",
+  "release_tag": "cre-knowledge-v0.3.0",
+  "generated_at": "2026-10-27T20:24:55Z",
   "status": "assembled",
   "purpose": "Deterministically assembled release-oriented exports derived from canonical repository registers.",
   "exports": [
@@ -38,7 +39,7 @@
       "path": "exports/decisions.csv",
       "format": "csv",
       "source": "docs/decision_register.md",
-      "record_count": 5
+      "record_count": 6
     },
     {
       "path": "exports/governance_decisions.csv",
@@ -56,7 +57,7 @@
       "path": "exports/contradictions.csv",
       "format": "csv",
       "source": "docs/contradiction_register.md",
-      "record_count": 9
+      "record_count": 13
     },
     {
       "path": "exports/observations.csv",
@@ -99,6 +100,25 @@
       "format": "csv",
       "source": "ontology/knowledge_graph_edges.csv",
       "record_count": 294
+    },
+    {
+      "path": "exports/population_rules.csv",
+      "format": "csv",
+      "source": "mechanics/population_rules_register.md",
+      "record_count": 12
+    },
+    {
+      "path": "exports/market_rules.csv",
+      "format": "csv",
+      "source": "mechanics/market_rules_register.md",
+      "record_count": 12
+    },
+    {
+      "path": "exports/rulebook.json",
+      "format": "json",
+      "source": "rulebook/rulebook.json",
+      "record_count": 27,
+      "sha256": "0487fcfb8149fcb28076145120ee04d1ccb83171df70868a4f48edf95cc21bd4"
     }
   ],
   "notes": [

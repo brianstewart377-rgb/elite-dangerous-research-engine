@@ -17,7 +17,9 @@ The score values themselves are strong; the caveat layer remains patch-sensitive
 ## Mechanic statement
 
 - Population does not contribute to system score.
-- Weekly architect credits are driven by system score and modified by Happiness.
+- Weekly architect credits are driven by system score and modified by Happiness: Credits per week = System Score x ~10,000 credits x (1 + Happiness) (guide PDF page 81).
+- The ~10,000 credits per point varies week by week by roughly +/- 2% (guide PDF page 81, footnote 31).
+- Facilities built mid-week contribute a pro-rated part of their weekly credits (about 5,000 per point for a station built mid-week), and unclaimed weeks accumulate into one game-mail (guide PDF page 81, footnote 30).
 - Appendix C provides deterministic score values by facility class.
 - The recovered sources also preserve multiple planner-relevant caveats and bugs, including agricultural zero-output cases, settlement pad-size divergence, and suspected nested-port passthrough behavior.
 - Routing displays are not a complete causal proof of influence, so visible-arrow-count reasoning is itself a planner-relevant caveat.
@@ -33,6 +35,7 @@ The score values themselves are strong; the caveat layer remains patch-sensitive
 ## Evidence basis
 
 - `evidence/claim_register.csv`
+- `reference_sources/MG-0001-megaguide-v2-3/mega-guide-v2.3.0-pdftotext.txt` (PDF page 81, footnotes 30-31; Appendix C, PDF page 99)
 - `docs/contradiction_register.md`
 - `planner/planner_risk_register.md`
 - `reference_sources/FW-0001-strong-weak-links/strong-and-weak-links-illustrated-reference.txt`

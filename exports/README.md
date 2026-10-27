@@ -1,6 +1,10 @@
-# Prototype Exports
+# Exports
 
-This directory contains prototype machine-usable exports derived from the repository's canonical registers.
+This directory contains machine-usable exports derived from the repository's canonical registers.
+
+`rulebook.json` is the published product (CRE Knowledge v0.3.0 onward): a copy of
+`rulebook/rulebook.json` whose SHA-256 is recorded in `export_manifest.json`. See
+`rulebook/README.md`.
 
 These files are not yet a final published knowledge-release bundle.
 They are working export outputs that align with the release-bundle layout defined in `docs/release_bundle_layout.md`.
@@ -28,6 +32,9 @@ Validation-only:
 - `claims.csv`
 - `claim_provenance_links.csv`
 - `evidence_traceability.csv`
+- `population_rules.csv`
+- `market_rules.csv`
+- `rulebook.json`
 - `live_verification_matrix.csv`
 - `graph_nodes.csv`
 - `graph_edges.csv`
