@@ -25,3 +25,5 @@ EV-0004,M-0012,supports,Medium,Reference pack plus committed canonical populatio
 EV-0004,M-0013,supports,Medium,Reference pack plus committed canonical caveat and score sources,Supports source-family provenance for score and caveat extraction
 EV-0006,M-0006,supports,High,"Measured weak links of 0.05 and a farm strong link of 0.4 + 0.4 - 0.4 at Praea Euq WV-W b2-2","Strong links measured only through before-and-after differences"
 EV-0006,M-0008,supports,High,"Measured colony port economy strengths: no stacking, volcanism +0.4 to Extraction, modifiers on a port's own economies","Several Spansh cases predate the current game version"
+EV-0007,M-0006,supports,High,"Measured strong-link flow between an orbital and a planetary port on one body","One body, two Tier 3 ports"
+EV-0007,M-0009,supports,High,"Measured the planetary port passing links on and adding its own link per economy","Port priority among same-kind ports not measured"

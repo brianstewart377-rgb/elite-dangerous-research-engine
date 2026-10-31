@@ -172,3 +172,16 @@ This register records durable contradictions and unresolved conflicts discovered
 - Testing status: Needs live verification in the current game version. One older observation in `EV-0006` (Spansh, 2025-05-16) is consistent with the boost not working: Simak's Progress shows Agriculture 1.00 on a terraformable water world.
 - Contradictions: Documented boost versus reported in-game behaviour
 - Unknowns: Whether the boost works in the current game version
+
+## C-0014 - Footnote 20: strong links form with both ports, versus page 59 and the measurement
+
+- Category: Community guide internal disagreement settled by measurement
+- Description: The Mega Guide's footnote 20 says that when a body has both a planetary port and a space port, strong links form with both primary ports. Its page 59 says planetary facilities link to the planetary port, which passes the links on to the orbital port. `EV-0007` measured the case at Wregoe ZN-X c28-28 A 5: orbital facilities linked to the orbital port only, surface facilities linked to the planetary port and were passed on, and the planetary port added its own link per economy.
+- Source: `reference_sources/MG-0001-megaguide-v2-3/mega-guide-v2.3.0-pdftotext.txt`, `evidence/EV-0007-dual-port-strong-links-wregoe-a5.md`
+- Exact location: MG-0001 PDF page 55 (footnote 20) and page 59
+- Confidence: High that the measurement contradicts footnote 20 for orbital facilities
+- Related mechanics: `M-0006`, `M-0009`
+- Planner implications: Use `RB-0029`. Orbital installations on a body with both port kinds contribute nothing to the planetary port.
+- Testing status: Settled in game for one body with two Tier 3 ports (`EV-0007`)
+- Contradictions: Footnote 20 versus page 59 and the in-game measurement
+- Unknowns: Behaviour with lower-tier or specialised planetary ports

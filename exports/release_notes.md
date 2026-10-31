@@ -1,5 +1,22 @@
 # Release Notes
 
+## CRE Knowledge v0.5.0 (tag `cre-knowledge-v0.5.0`)
+
+How strong links flow on a body with both an orbital and a planetary port, measured in game.
+
+### New
+
+- `EV-0007`: Wregoe ZN-X c28-28 A 5. The Dodec and the Large Planetary Port on the same body are compared from journal strengths. Weak links cancel in their difference. All six economies match the rule exactly.
+- `RB-0029` (`Confirmed`):
+  - surface facilities link to the planetary port, which passes their links on to the orbital port;
+  - orbital facilities link to the orbital port only;
+  - the planetary port adds its own strong link per economy (tier value plus the body's modifiers) and sends no weak links.
+- `C-0014`: the guide's footnote 20 (links form with both ports) is contradicted by page 59 and by the measurement.
+
+### Changed
+
+- `RB-0017` and `RB-0020`: caveats point to `RB-0029`. `RB-0020` stays `Extracted` because port priority among ports of the same kind is not measured.
+
 ## CRE Knowledge v0.4.0 (tag `cre-knowledge-v0.4.0`)
 
 The first rules settled by in-game measurement.
