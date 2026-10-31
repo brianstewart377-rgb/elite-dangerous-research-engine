@@ -17,9 +17,9 @@ The Wregoe-seeded mechanics remain at the front of the sequence, while the new e
 | `M-0003` | One Weak Refinery Link Is Insufficient To Restore Metals | Confirmed | Economy / negative evidence | Narrow live Wregoe test case | `EV-0002` | `EXP-0000` |
 | `M-0004` | Construction Points and Facility Tiers | Likely | Construction | Canonical `MG-0001` extraction plus Wregoe corroboration | `EV-0004` | `LV-0005` |
 | `M-0005` | Colony-Type and Specialised Ports | Likely | Port taxonomy | Canonical `MG-0001` extraction plus preview corroboration | `EV-0003`, `EV-0004` | `LV-0002` |
-| `M-0006` | Strong and Weak Link Routing | Likely | Market links / routing | Canonical `FW-0001` and `MG-0001` extraction plus Wregoe context | `EV-0001`, `EV-0004` | `LV-0003`, `LV-0005` |
+| `M-0006` | Strong and Weak Link Routing | Likely | Market links / routing | Canonical `FW-0001` and `MG-0001` extraction plus Wregoe context | `EV-0001`, `EV-0004`, `EV-0006` | `LV-0003`, `LV-0005` |
 | `M-0007` | Colony Port Economy Inheritance | Likely | Economy | Canonical `MG-0001` extraction plus Wregoe and preview corroboration | `EV-0001`, `EV-0003`, `EV-0004` | `LV-0001`, `LV-0002` |
-| `M-0008` | Local Body Base Economies and Modifiers | Likely | Economy / body effects | Canonical `MG-0001` extraction with `DM-0001` support | `EV-0004` | `LV-0001`, `LV-0004` |
+| `M-0008` | Local Body Base Economies and Modifiers | Likely | Economy / body effects | Canonical `MG-0001` extraction with `DM-0001` support | `EV-0004`, `EV-0006` | `LV-0001`, `LV-0004` |
 | `M-0009` | Facility Prerequisites, Port Conversion, and High-Tier Port Cost Escalation | Extracted | Construction / dependencies | Canonical `MG-0001`, `DM-0001`, and `DD-0001` extraction | `EV-0004` | `LV-0005`, `LV-0010` |
 | `M-0010` | Economy Compatibility, Rank Protection, and Market Cannibalization | Extracted | Economy / markets | Canonical `MG-0001` appendix extraction with `FW-0001` support | `EV-0004` | `LV-0001`, `LV-0003`, `LV-0006`, `LV-0007` |
 | `M-0011` | Facility Stats, Service Activation, and System Effects | Extracted | System stats / services | Canonical `MG-0001` and `DM-0001` extraction | `EV-0004` | `LV-0008` |
