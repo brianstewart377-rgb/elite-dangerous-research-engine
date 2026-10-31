@@ -141,9 +141,9 @@ This register records durable contradictions and unresolved conflicts discovered
 - Confidence: High that the wording conflict exists
 - Related mechanics: `M-0008`
 - Planner implications: Treat a body economy that is both inherited and added by a modifier as 1.0, not as a stacked value (`RB-0012`). "May stack" plausibly means that several different economies can be added together, which the guide agrees with.
-- Testing status: Needs live verification
+- Testing status: Settled in game by `EV-0006` (2026-10-31). Vasellini Prefecture (icy body with geologicals, Pristine) shows Industrial 2.20, below the 2.40 that stacking would give before any links, so the guide's no-stacking rule holds. `RB-0012` is `Confirmed`.
 - Contradictions: First-party "may stack" versus guide examples of overlap
-- Unknowns: Whether any modifier pair does stack in the live game
+- Unknowns: None for body economy plus geologicals; other pairs follow the same rule unless a counter-example is measured
 
 ## C-0012 - Water World as an Agriculture and High Tech strong-link boost
 
@@ -158,6 +158,7 @@ This register records durable contradictions and unresolved conflicts discovered
 - Contradictions: Guide list versus first-party list
 - Unknowns: Whether the boosts were added after the post or the post omitted them
 - Note: The guide says the in-game Codex lists the Agriculture and High Tech Water World boosts and that experiments confirmed them (MG-0001 PDF page 2, footnote 2). CRE does not hold the Codex text, so they stay `Extracted`.
+- Note (2026-10-31): `EV-0006` measured the Water World Agriculture boost on ports' own Agriculture (Heyerdahl Beacon and Low Town, 1.40), which supports the guide. A strong link carrying it has not been measured in isolation.
 
 ## C-0013 - Terraformable body as an Agriculture strong-link boost
 
@@ -168,6 +169,6 @@ This register records durable contradictions and unresolved conflicts discovered
 - Confidence: Medium (the guide reports in-game behaviour; a later patch may have fixed it)
 - Related mechanics: `M-0006`
 - Planner implications: The rulebook marks the condition `Disputed` in `RB-0018`; do not apply the boost until a live test shows it working.
-- Testing status: Needs live verification
+- Testing status: Needs live verification in the current game version. One older observation in `EV-0006` (Spansh, 2025-05-16) is consistent with the boost not working: Simak's Progress shows Agriculture 1.00 on a terraformable water world.
 - Contradictions: Documented boost versus reported in-game behaviour
 - Unknowns: Whether the boost works in the current game version

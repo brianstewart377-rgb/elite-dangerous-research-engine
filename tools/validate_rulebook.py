@@ -4,7 +4,9 @@
 Every rule must cite at least one registered source with a short quote, and
 every quote must appear in that source's committed text: for the Mega Guide
 (MG-0001) on the cited PDF page of the pdftotext extraction, for the Frontier
-sources (FD-*) in their reference README. Related IDs and contradictions must
+sources (FD-*) in their reference README, and for in-game evidence records
+(EV-*) in the record itself. `Confirmed` needs a first-party (FD-) source or
+in-game evidence (EV-); `Likely` needs a first-party source. Related IDs and contradictions must
 exist in the registers, and the structured values are checked for internal
 consistency (CP escalation sequences against their formulas, Appendix C scores
 against the guide's own lines). Standard library only.
@@ -114,6 +116,12 @@ def check_quote(rule_id: str, citation: dict, sources: dict[str, dict[str, str]]
         readme = REPO_ROOT / sources[source_id]["repo_path"] / "README.md"
         if not quote_found(quote, normalise(readme.read_text(encoding="utf-8"))):
             raise RulebookError(f"{rule_id}: quote not found in {readme.relative_to(REPO_ROOT)}: {quote!r}")
+    elif source_id.startswith("EV-"):
+        record = REPO_ROOT / sources[source_id]["repo_path"]
+        if record.suffix != ".md" or record.parent != REPO_ROOT / "evidence" or not record.is_file():
+            raise RulebookError(f"{rule_id}: {source_id} must point to an evidence/EV-*.md record")
+        if not quote_found(quote, normalise(record.read_text(encoding="utf-8"))):
+            raise RulebookError(f"{rule_id}: quote not found in {record.relative_to(REPO_ROOT)}: {quote!r}")
     else:
         raise RulebookError(f"{rule_id}: no quote check is defined for {source_id}")
 
@@ -205,6 +213,15 @@ def check_scores(rule_id: str, value: dict, pages: list[str]) -> None:
         raise RulebookError(f"{rule_id}: scores differ from MG-0001 PDF page {page}: {wrong}")
 
 
+def supports(status: str, source_ids: list[str]) -> bool:
+    """Confirmed needs a first-party source or in-game evidence; Likely a first-party source."""
+    if status == "Confirmed":
+        return any(source.startswith(("FD-", "EV-")) for source in source_ids)
+    if status == "Likely":
+        return any(source.startswith("FD-") for source in source_ids)
+    return True
+
+
 def check_economy_lists(rule_id: str, mapping: dict) -> None:
     for key, economies in mapping.items():
         if not isinstance(economies, list) or not economies or not set(economies) <= ECONOMIES:
@@ -225,8 +242,8 @@ def check_strong_link_modifiers(rule_id: str, value: dict, sources: dict[str, di
                 status = condition.get("status")
                 if status not in STATUSES:
                     raise RulebookError(f"{rule_id}: {economy} {condition['condition']} has an invalid status")
-                if status in ("Confirmed", "Likely") and not any(source.startswith("FD-") for source in listed):
-                    raise RulebookError(f"{rule_id}: {economy} {condition['condition']} is {status} but no FD- source lists it")
+                if not supports(status, listed):
+                    raise RulebookError(f"{rule_id}: {economy} {condition['condition']} is {status} but no source lists it that can support {status}")
                 contradiction = condition.get("contradiction")
                 if (status == "Disputed") != (contradiction is not None):
                     raise RulebookError(f"{rule_id}: {economy} {condition['condition']} needs a contradiction exactly when Disputed")
@@ -271,8 +288,9 @@ def validate(rulebook: dict) -> list[str]:
             raise RulebookError(f"{rule_id}: at least one source is required")
         for citation in rule["sources"]:
             check_quote(rule_id, citation, sources, pages)
-        if rule["status"] in ("Confirmed", "Likely") and not any(c["source_id"].startswith("FD-") for c in rule["sources"]):
-            raise RulebookError(f"{rule_id}: {rule['status']} needs a first-party (FD-) citation")
+        if not supports(rule["status"], [c["source_id"] for c in rule["sources"]]):
+            raise RulebookError(f"{rule_id}: {rule['status']} needs a first-party (FD-) citation"
+                                + (" or in-game evidence (EV-)" if rule["status"] == "Confirmed" else ""))
         unknown = [ref for ref in rule["related"] if ref not in known]
         if unknown:
             raise RulebookError(f"{rule_id}: unknown related ids {unknown}")

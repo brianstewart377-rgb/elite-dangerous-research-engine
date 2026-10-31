@@ -1,7 +1,7 @@
 {
-  "export_manifest_version": "0.3.0",
-  "release_tag": "cre-knowledge-v0.3.0",
-  "generated_at": "2026-10-27T20:24:55Z",
+  "export_manifest_version": "0.4.0",
+  "release_tag": "cre-knowledge-v0.4.0",
+  "generated_at": "2026-10-31T19:42:39Z",
   "status": "assembled",
   "purpose": "Deterministically assembled release-oriented exports derived from canonical repository registers.",
   "exports": [
@@ -63,7 +63,7 @@
       "path": "exports/observations.csv",
       "format": "csv",
       "source": "evidence/observation_register.csv",
-      "record_count": 13
+      "record_count": 19
     },
     {
       "path": "exports/claims.csv",
@@ -81,7 +81,7 @@
       "path": "exports/evidence_traceability.csv",
       "format": "csv",
       "source": "evidence/evidence_mechanic_traceability.csv",
-      "record_count": 24
+      "record_count": 26
     },
     {
       "path": "exports/live_verification_matrix.csv",
@@ -117,8 +117,8 @@
       "path": "exports/rulebook.json",
       "format": "json",
       "source": "rulebook/rulebook.json",
-      "record_count": 27,
-      "sha256": "0487fcfb8149fcb28076145120ee04d1ccb83171df70868a4f48edf95cc21bd4"
+      "record_count": 28,
+      "sha256": "d2e64e8fa8f76e6b75e5ad3cb89819087b1cbf8ad52deac58a8e29e1c50c7976"
     }
   ],
   "notes": [

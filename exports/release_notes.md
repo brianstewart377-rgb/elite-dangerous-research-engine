@@ -1,5 +1,38 @@
 # Release Notes
 
+## CRE Knowledge v0.4.0 (tag `cre-knowledge-v0.4.0`)
+
+The first rules settled by in-game measurement.
+
+### New
+
+- `EV-0006`: colony port economy strengths measured from game journals (game
+  4.4.1.1 to 4.4.2.1, October 2026) and Spansh station data. For a colony
+  port, the journal's `StationEconomies` `Proportion` is the economy's
+  strength, not a share. Registered as a citable source.
+- `RB-0028` (`Confirmed`): the strong-link modifier list also applies to a
+  port's own economies. Each inherited economy starts at 1.0 and moves 0.4 per
+  applicable condition. A tidally locked planet in a binary pair counts as
+  tidally locked to its star.
+- `tools/validate_rulebook.py`: in-game evidence records (`EV-`) can be cited.
+  The quote must appear in the record. `Confirmed` accepts a first-party source
+  or in-game evidence, as the status vocabulary already said. `Likely` still
+  needs a first-party source.
+
+### Changed
+
+- `RB-0012` (no stacking): `Disputed` to `Confirmed`. Vasellini Prefecture shows
+  Industrial 2.20, below the 2.40 that stacking would give before links.
+  Contradiction `C-0011` is settled.
+- `RB-0013` (volcanism): `Extracted` to `Confirmed`, with its size. Volcanism adds
+  0.4 to the port's own Extraction and nothing else.
+- `RB-0016` (weak links 0.05): `Likely` to `Confirmed`.
+- `RB-0018`: the tidal-lock-to-star Agriculture decrease includes binary pairs.
+  New caveats record the water-world Agriculture evidence (`C-0012`) and one
+  older observation consistent with the terraformable boost not working
+  (`C-0013`, still `Disputed`).
+- `RB-0010` and `RB-0019`: caveats point to the measured values.
+
 ## CRE Knowledge v0.3.0 (tag `cre-knowledge-v0.3.0`)
 
 The first release with a published rulebook (owner decision `D-0006`).

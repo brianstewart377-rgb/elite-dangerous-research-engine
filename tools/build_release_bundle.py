@@ -655,7 +655,7 @@ EXPORT_SPECS: list[ExportSpec] = [
     ExportSpec("rulebook.json", "json", "rulebook/rulebook.json", copy_rulebook_json),
 ]
 
-KNOWLEDGE_VERSION = "0.3.0"
+KNOWLEDGE_VERSION = "0.4.0"
 
 
 def assemble_exports(output_dir: Path) -> dict:
